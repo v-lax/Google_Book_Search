@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Jumbotron from "../components/Jumbotron/Jumbotron"
 import SearchJumbotron from "../components/SearchJumbotron/index"
+import API from "../utils/API"
 
 const Search = () => {
+    const [searchState,setSearchState] = useState({
+        term:"",
+        searchList:[],
+    });
+
+    useEffect(()=>{
+        if(!searchState.term){
+            return;
+        }
+
+        API.searchTerms(searchState.term.trim())
+    },[])
     return(
     <>
         <Jumbotron 

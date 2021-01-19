@@ -1,6 +1,7 @@
 import React from "react";
 
-const SearchJumbotron = () => {
+const SearchJumbotron = ({onChange, onClick}) => {
+
     return (
         <div className="jumbotron jumbotron-fluid">
             <div className="container">
@@ -9,7 +10,10 @@ const SearchJumbotron = () => {
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="inputGroup-sizing-default">Search</span>
                     </div>
-                    <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input onChange={onChange} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button onClick={onClick} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </div>
                 </div>
             </div>

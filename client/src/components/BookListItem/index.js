@@ -1,11 +1,13 @@
 import React from "react";
-import { Container, Row, Col } from "../Grid/index"
-import API from "../../utils/API"
+import { Container, Row, Col } from "../Grid/index";
+import API from "../../utils/API";
 
-const BookListItem = ({title,image,authors,publishedDate,description,previewLink}) => {
+const BookListItem = ({id,title,image,authors,publishedDate,description,previewLink,onClick}) => {
     
-    const saveBook = e =>{
+    const saveBook = () =>{
+        console.log("save a book")
         API.saveBook({
+            id:id,
             title:title,
             authors:authors,
             description:description,
@@ -15,7 +17,7 @@ const BookListItem = ({title,image,authors,publishedDate,description,previewLink
             console.log(result)
         }).catch(err=>console.log(err))
     }
-    
+
     return (
         <div className="card">
         <Container>
@@ -27,7 +29,7 @@ const BookListItem = ({title,image,authors,publishedDate,description,previewLink
                 </Col>
                 <Col size="xs-4 sm2">
                     <a href={previewLink} className="btn btn-primary">View</a>
-                    <button onClick={saveBook} type="button" className="btn btn-primary">Save</button>
+                    <button onClick = {saveBook} type="button" className="btn btn-primary">Save</button>
                 </Col>
             </Row>
             <Row>

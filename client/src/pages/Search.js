@@ -23,6 +23,7 @@ const Search = () => {
            .catch(err => console.log(err))
     }
 
+
     return(
     <>
         <Jumbotron 
@@ -34,9 +35,10 @@ const Search = () => {
             {   books.length===0 ?(
                 <h1>No Books found. Sorry. </h1>
             ):(
-                books.map(book => {
+                books.map((book,id) => {
                     return(
                         <BookListItem
+                            key = {id}
                             title={book.volumeInfo.title}
                             image={book.volumeInfo.imageLinks.smallThumbnail}
                             authors={book.volumeInfo.authors}

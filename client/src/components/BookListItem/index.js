@@ -1,9 +1,12 @@
 import React from "react";
+import {useLocation} from "react-router-dom"
 import { Container, Row, Col } from "../Grid/index";
 import API from "../../utils/API";
 
 const BookListItem = ({id,title,image,authors,publishedDate,description,previewLink,onClick}) => {
     
+    const location = useLocation();
+
     const saveBook = () =>{
         console.log("save a book")
         API.saveBook({
@@ -27,8 +30,16 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
                     <p>{publishedDate}</p>
                 </Col>
                 <Col size="xs-4 sm2">
-                    <a href={previewLink} className="btn btn-primary">View</a>
-                    <button onClick = {saveBook} type="button" className="btn btn-primary">Save</button>
+                    {location.pathname==="/favorites"?(
+                        <></>
+                    ):(
+                        <a href={previewLink} className="btn btn-primary">View</a>
+                    )}
+                    {location.pathname==="/favorites"?(
+                        <button onClick = {saveBook} type="button" className="btn btn-danger">Delete</button>
+                    ):(
+                        <button onClick = {saveBook} type="button" className="btn btn-primary">Save</button>
+                    )}
                 </Col>
             </Row>
             <Row>

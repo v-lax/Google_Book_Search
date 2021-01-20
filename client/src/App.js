@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Search from "./pages/Search";
 import Favorites from "./pages/Favorites";
 
+
 function App() {
   return (
     <Router>
@@ -11,6 +12,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Search} />
+          <Route exact path="search" component={Search}/>
           <Route exact path="/favorites" component={Favorites} />
         </Switch>
       </div>

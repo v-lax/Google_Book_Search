@@ -7,7 +7,6 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
     const saveBook = () =>{
         console.log("save a book")
         API.saveBook({
-            id:id,
             title:title,
             authors:authors,
             description:description,

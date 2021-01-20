@@ -7,7 +7,6 @@ export default {
         )
     },
     saveBook:function(bookData){
-        console.log('trying to save a book.')
         return axios.post("/api/books",bookData)
     }
 };

@@ -6,5 +6,8 @@ router
     .get(bookController.findAll)
     .post(bookController.create);
 
+router.route("./:id")
+      .delete(bookController.remove);
+
 
 module.exports = router

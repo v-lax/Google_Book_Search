@@ -8,12 +8,21 @@ const Favorites = () =>{
     const [favBooks,setFavBooks] = useState([]);
     
     useEffect(()=>{
+        loadBooks();
+    },[])
+    const deleteBook = (id) =>{
+        API.deleteBook(id)
+           .then(res=>loadBooks())
+           .catch(err=>console.log(err))
+    }
+
+    function loadBooks(){
         API.getBooks()
            .then(res=>{
                setFavBooks(res.data)
            })
            .catch(err=>console.log(err))
-    },[])
+    }
 
     return(
         <>
@@ -31,6 +40,7 @@ const Favorites = () =>{
                             image={book.image}
                             authors={book.authors}
                             description={book.description}
+                            onClick={deleteBook}
                         />
                     )
                 })

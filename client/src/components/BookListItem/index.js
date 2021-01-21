@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom"
 import { Container, Row, Col } from "../Grid/index";
 import API from "../../utils/API";
 
-const BookListItem = ({id,title,image,authors,publishedDate,description,previewLink,onClick}) => {
+const BookListItem = ({id,title,image,authors,publishedDate,description,previewLink,loadBooks}) => {
     
     const location = useLocation();
 
@@ -18,6 +18,12 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
         }).then(result=>{
             console.log(result)
         }).catch(err=>console.log(err))
+    }
+
+    const deleteBook = (id) =>{
+        API.deleteBook(id)
+           .then(res=>loadBooks)
+           .catch(err=>console.log(err))
     }
 
     return (
@@ -36,7 +42,7 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
                         <a href={previewLink} className="btn btn-primary">View</a>
                     )}
                     {location.pathname==="/favorites"?(
-                        <button onClick = {saveBook} type="button" className="btn btn-danger">Delete</button>
+                        <button onClick = {()=>{deleteBook(id)}} type="button" className="btn btn-danger">Delete</button>
                     ):(
                         <button onClick = {saveBook} type="button" className="btn btn-primary">Save</button>
                     )}

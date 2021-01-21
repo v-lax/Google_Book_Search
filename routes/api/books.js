@@ -6,7 +6,7 @@ router
     .get(bookController.findAll)
     .post(bookController.create);
 
-router.route("./:id")
+router.route("/:id")
       .delete(bookController.remove);
 
 

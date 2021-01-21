@@ -7,6 +7,7 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
     
     const location = useLocation();
 
+
     const saveBook = () =>{
         console.log("save a book")
         API.saveBook({
@@ -20,9 +21,9 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
         }).catch(err=>console.log(err))
     }
 
-    const deleteBook = (id) =>{
+    const deleteBook = () =>{
         API.deleteBook(id)
-           .then(res=>loadBooks)
+           .then(res=>loadBooks())
            .catch(err=>console.log(err))
     }
 
@@ -42,7 +43,7 @@ const BookListItem = ({id,title,image,authors,publishedDate,description,previewL
                         <a href={previewLink} className="btn btn-primary">View</a>
                     )}
                     {location.pathname==="/favorites"?(
-                        <button onClick = {()=>{deleteBook(id)}} type="button" className="btn btn-danger">Delete</button>
+                        <button onClick = {deleteBook} type="button" className="btn btn-danger">Delete</button>
                     ):(
                         <button onClick = {saveBook} type="button" className="btn btn-primary">Save</button>
                     )}
